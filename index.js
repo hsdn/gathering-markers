@@ -4,6 +4,7 @@ module.exports = function GatheringMarkers(mod) {
 	let gui = null;
 	const MSG = new TeraMessage(mod);
 	const spawnedItems = new Map();
+	const spawnedMarkers = new Set();
 	const gatheringItemNames = new Map();
 
 	const gatheringItems = {
@@ -43,7 +44,8 @@ module.exports = function GatheringMarkers(mod) {
 		if (global.TeraProxy.GUIMode) {
 			gui = new SettingsUI(mod, getSettingsStructure(), mod.settings, {
 				"width": 400,
-				"height": 650
+				"height": 650,
+				"resizable": false
 			});
 
 			gui.on("update", settings => {
@@ -60,6 +62,7 @@ module.exports = function GatheringMarkers(mod) {
 
 	mod.hook("S_LOAD_TOPO", 3, () => {
 		spawnedItems.clear();
+		spawnedMarkers.clear();
 	});
 
 	mod.hook("S_SPAWN_COLLECTION", 4, event => {
@@ -86,21 +89,22 @@ module.exports = function GatheringMarkers(mod) {
 
 	function respawnMarkers() {
 		spawnedItems.forEach((event, itemId) => {
-			despawnMarker(itemId);
-
 			if (mod.settings.enabled && event !== null) {
 				const itemKey = gatheringItems[event.id.toString()];
 
 				if (itemKey && mod.settings[itemKey] === true) {
-					spawnMarker(itemId, event.loc);
+					return spawnMarker(itemId, event.loc);
 				}
 			}
+
+			despawnMarker(itemId);
 		});
 	}
 
 	function spawnMarker(gameId, loc) {
-		const itemLoc = { ...loc };
+		if (spawnedMarkers.has(gameId)) return;
 
+		const itemLoc = { ...loc };
 		itemLoc.z -= 100;
 
 		mod.send("S_SPAWN_DROPITEM", 9, {
@@ -111,14 +115,18 @@ module.exports = function GatheringMarkers(mod) {
 			"expiry": 0,
 			"owners": []
 		});
+
+		spawnedMarkers.add(gameId);
 	}
 
 	function despawnMarker(gameId) {
-		if (!spawnedItems.has(gameId)) return;
+		if (!spawnedMarkers.has(gameId)) return;
 
 		mod.send("S_DESPAWN_DROPITEM", 4, {
 			"gameId": gameId * 10n
 		});
+
+		spawnedMarkers.delete(gameId);
 	}
 
 	function showGui() {
@@ -136,22 +144,26 @@ module.exports = function GatheringMarkers(mod) {
 	function getSettingsStructure() {
 		const settingsStructure = [{
 			"key": "enabled",
-			"name": "Enable",
+			"name": "Module Enabled",
 			"type": "bool"
 		},
 		{
 			"key": "alert",
-			"name": "Alert",
+			"name": "Alert Messages",
 			"type": "bool"
 		}];
 
-		Object.keys(gatheringItems).forEach(itemId =>
+		Object.keys(gatheringItems).forEach(itemId => {
+			let color = "#6060db";
+			if (itemId < 200) color = "#db6060";
+			if (itemId < 100) color = "#60bb60";
+
 			settingsStructure.push({
 				"key": gatheringItems[itemId],
-				"name": gatheringItemNames.get(parseInt(itemId)),
+				"name": `<span style="color:${color}">${gatheringItemNames.get(parseInt(itemId))}</span>`,
 				"type": "bool"
-			})
-		);
+			});
+		});
 
 		return settingsStructure;
 	}
@@ -163,6 +175,7 @@ module.exports = function GatheringMarkers(mod) {
 		}
 
 		spawnedItems.clear();
+		spawnedMarkers.clear();
 		mod.command.remove("gat");
 	};
 };
