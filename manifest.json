@@ -1,0 +1,17 @@
+{
+    "files": {
+        "README.md": "b4a21a617f8ade237ca65f4df9312c3c3e034eb0b964a42115cd6a614200c41b",
+        "index.js": "e3acde943a5705eb2b831a69ff225401026e3c6fe598d430a3b104002d0ed326",
+        "module.json": "e8fdaba44928309dc5ec34ff2c41f19abcd499642bff6dfc84534e0fffbc1403",
+        "settings_migrator.js": "949a5b0abbdb17f06e04e45e6a195b1cdc88b63385075d6cb4967014de290e32"
+    },
+    "defs": {
+        "S_CHAT": 3,
+        "S_DESPAWN_COLLECTION": 2,
+        "S_DESPAWN_DROPITEM": 4,
+        "S_DUNGEON_EVENT_MESSAGE": 2,
+        "S_LOAD_TOPO": 3,
+        "S_SPAWN_COLLECTION": 4,
+        "S_SPAWN_DROPITEM": 9
+    }
+}

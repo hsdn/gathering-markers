@@ -1,0 +1,15 @@
+{
+    "name": "gathering-markers",
+    "options": {
+        "niceName": "Gathering Markers",
+        "settingsFile": "config.json",
+        "settingsMigrator": "settings_migrator.js",
+        "settingsVersion": 1
+    },
+    "author": "HSDN",
+    "description": "Gathering Markers",
+    "servers": ["https://raw.githubusercontent.com/hsdn/gathering-markers/master/"],
+    "supportUrl": "https://github.com/hsdn/gathering-markers/issues",
+    "version": "110.2",
+    "disableAutoUpdate": false
+}
