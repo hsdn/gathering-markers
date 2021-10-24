@@ -8,3 +8,5 @@ Toolbox(/8) | Command description
 --- | ---
 **gat** | Module on/off.
 **gat ui** | Module settings GUI.
+
+![](https://i.imgur.com/d6sRkWv.png)
