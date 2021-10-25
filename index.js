@@ -8,24 +8,26 @@ module.exports = function GatheringMarkers(mod) {
 	const gatheringItemNames = new Map();
 
 	const gatheringItems = {
-		"1": "harmony_grass",
-		"2": "wild_cobseed",
-		"3": "wild_veridia",
-		"4": "orange_mushroom",
-		"5": "moongourd",
-		"6": "apple_tree",
-		"101": "plain_stone",
-		"102": "cobala_ore",
-		"103": "shadmetal_ore",
-		"104": "xermetal_ore",
-		"105": "normetal_ore",
-		"106": "galborne_ore",
-		"201": "achromic_essence",
-		"202": "crimson_essence",
-		"203": "earth_essence",
-		"204": "azure_essence",
-		"205": "opal_essence",
-		"206": "obsidian_essence"
+		"harmony_grass": 1,
+		"wild_cobseed": 2,
+		"wild_veridia": 3,
+		"orange_mushroom": 4,
+		"moongourd": 5,
+		"apple_tree": 6,
+		"plain_stone": 101,
+		"cobala_ore": 102,
+		"shadmetal_ore": 103,
+		"xermetal_ore": 104,
+		"normetal_ore": 105,
+		"galborne_ore": 106,
+		"pure_duranium_ore": 301,
+		"achromic_essence": 201,
+		"crimson_essence": 202,
+		"earth_essence": 203,
+		"azure_essence": 204,
+		"opal_essence": 205,
+		"obsidian_essence": 206,
+		"pure_duranium_crystal": 601
 	};
 
 	mod.command.add("gat", {
@@ -44,7 +46,7 @@ module.exports = function GatheringMarkers(mod) {
 		if (global.TeraProxy.GUIMode) {
 			gui = new SettingsUI(mod, getSettingsStructure(), mod.settings, {
 				"width": 400,
-				"height": 650,
+				"height": 720,
 				"resizable": false
 			});
 
@@ -56,7 +58,7 @@ module.exports = function GatheringMarkers(mod) {
 	});
 
 	async function applyGatheringItemNames() {
-		(await mod.queryData("/StrSheet_Collections/String@collectionId=?", [[...Object.keys(gatheringItems).map(x => parseInt(x))]], true))
+		(await mod.queryData("/StrSheet_Collections/String@collectionId=?", [[...Object.values(gatheringItems)]], true))
 			.forEach(res => gatheringItemNames.set(res.attributes.collectionId, res.attributes.string));
 	}
 
@@ -66,9 +68,9 @@ module.exports = function GatheringMarkers(mod) {
 	});
 
 	mod.hook("S_SPAWN_COLLECTION", 4, event => {
-		if (!mod.settings.enabled || !Object.keys(gatheringItems).includes(event.id.toString())) return;
+		if (!mod.settings.enabled || !Object.values(gatheringItems).includes(event.id)) return;
 
-		const itemKey = gatheringItems[event.id.toString()];
+		const itemKey = Object.keys(gatheringItems).find(k => gatheringItems[k] === event.id);
 		const itemString = `Found ${MSG.BLU(gatheringItemNames.get(event.id))}`;
 
 		if (mod.settings[itemKey] === true && mod.settings.alert) {
@@ -90,7 +92,7 @@ module.exports = function GatheringMarkers(mod) {
 	function respawnMarkers() {
 		spawnedItems.forEach((event, itemId) => {
 			if (mod.settings.enabled && event !== null) {
-				const itemKey = gatheringItems[event.id.toString()];
+				const itemKey = Object.keys(gatheringItems).find(k => gatheringItems[k] === event.id);
 
 				if (itemKey && mod.settings[itemKey] === true) {
 					return spawnMarker(itemId, event.loc);
@@ -130,6 +132,8 @@ module.exports = function GatheringMarkers(mod) {
 	}
 
 	function showGui() {
+		if (!gui) return;
+
 		gui.show();
 
 		if (gui.ui.window) {
@@ -153,13 +157,13 @@ module.exports = function GatheringMarkers(mod) {
 			"type": "bool"
 		}];
 
-		Object.keys(gatheringItems).forEach(itemId => {
-			let color = "#6060db";
-			if (itemId < 200) color = "#db6060";
-			if (itemId < 100) color = "#60bb60";
+		Object.values(gatheringItems).forEach(itemId => {
+			let color = "#60bb60";
+			if ((itemId >= 101 && itemId <= 106) || itemId === 301) color = "#db6060";
+			if ((itemId >= 201 && itemId <= 206) || itemId === 601) color = "#6060db";
 
 			settingsStructure.push({
-				"key": gatheringItems[itemId],
+				"key": Object.keys(gatheringItems).find(k => gatheringItems[k] === itemId),
 				"name": `<span style="color:${color}">${gatheringItemNames.get(parseInt(itemId))}</span>`,
 				"type": "bool"
 			});

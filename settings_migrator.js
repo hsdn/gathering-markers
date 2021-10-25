@@ -20,6 +20,7 @@ const DefaultSettings = {
 	"xermetal_ore": true,
 	"normetal_ore": true,
 	"galborne_ore": true,
+	"pure_duranium_ore": true,
 
 	// Energy
 	"achromic_essence": true,
@@ -27,7 +28,8 @@ const DefaultSettings = {
 	"earth_essence": true,
 	"azure_essence": true,
 	"opal_essence": true,
-	"obsidian_essence": true
+	"obsidian_essence": true,
+	"pure_duranium_crystal": true
 };
 
 module.exports = function MigrateSettings(from_ver, to_ver, settings) {
