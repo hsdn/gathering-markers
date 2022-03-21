@@ -137,10 +137,10 @@ module.exports = function GatheringMarkers(mod) {
 		gui.show();
 
 		if (gui.ui.window) {
-			gui.ui.window.webContents.on("before-input-event", (event, input) => {
-				if (input.key.toLowerCase() === "escape") {
-					gui.close();
-				}
+			gui.ui.window.webContents.on("did-finish-load", () => {
+				gui.ui.window.webContents.executeJavaScript(
+					"var e=document.getElementById('close-btn');e.style.cursor='default';e.onclick =()=>window.parent.close();"
+				);
 			});
 		}
 	}
