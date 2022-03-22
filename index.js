@@ -139,7 +139,7 @@ module.exports = function GatheringMarkers(mod) {
 		if (gui.ui.window) {
 			gui.ui.window.webContents.on("did-finish-load", () => {
 				gui.ui.window.webContents.executeJavaScript(
-					"var e=document.getElementById('close-btn');e.style.cursor='default';e.onclick =()=>window.parent.close();"
+					"!function(){var e=document.getElementById('close-btn');e.style.cursor='default',e.onclick=function(){window.parent.close()}}();"
 				);
 			});
 		}
