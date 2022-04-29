@@ -109,7 +109,7 @@ module.exports = function GatheringMarkers(mod) {
 		const itemLoc = { ...loc };
 		itemLoc.z -= 100;
 
-		mod.send("S_SPAWN_DROPITEM", 9, {
+		mod.send("S_SPAWN_DROPITEM", mod.majorPatchVersion >= 99 ? 9 : 8, {
 			"gameId": gameId * 10n,
 			"loc": itemLoc,
 			"item": 88704,
