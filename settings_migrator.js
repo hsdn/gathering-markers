@@ -6,6 +6,7 @@ const DefaultSettings = {
 	"alert": false,
 
 	// Plants
+	"dawnbloom_leaf": true,
 	"harmony_grass": true,
 	"wild_cobseed": true,
 	"wild_veridia": true,
@@ -14,6 +15,7 @@ const DefaultSettings = {
 	"apple_tree": true,
 
 	// Mining
+	"dawnsteel_ore": true,
 	"plain_stone": true,
 	"cobala_ore": true,
 	"shadmetal_ore": true,
@@ -23,6 +25,7 @@ const DefaultSettings = {
 	"pure_duranium_ore": true,
 
 	// Energy
+	"lumin_essence": true,
 	"achromic_essence": true,
 	"crimson_essence": true,
 	"earth_essence": true,
