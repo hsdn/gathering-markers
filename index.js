@@ -8,6 +8,9 @@ module.exports = function GatheringMarkers(mod) {
 	const gatheringItemNames = new Map();
 
 	const gatheringItems = {
+		"dawnsteel_ore": 590,
+		"lumin_essence": 591,
+		"dawnbloom_leaf": 592,
 		"harmony_grass": 1,
 		"wild_cobseed": 2,
 		"wild_veridia": 3,
