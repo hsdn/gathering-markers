@@ -4,7 +4,7 @@
         "niceName": "Gathering Markers",
         "settingsFile": "config.json",
         "settingsMigrator": "settings_migrator.js",
-        "settingsVersion": 2
+        "settingsVersion": 3
     },
     "author": "HSDN",
     "description": "Gathering Markers",

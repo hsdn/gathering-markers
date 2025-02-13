@@ -22,6 +22,7 @@ const DefaultSettings = {
 	"normetal_ore": true,
 	"galborne_ore": true,
 	"pure_duranium_ore": true,
+	"exodor_ore": true,
 	"dawnsteel_ore": true,
 
 	// Energy

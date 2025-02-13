@@ -22,6 +22,7 @@ module.exports = function GatheringMarkers(mod) {
 		"normetal_ore": 105,
 		"galborne_ore": 106,
 		"pure_duranium_ore": 301,
+		"exodor_ore": 814,
 		"dawnsteel_ore": 590,
 		"achromic_essence": 201,
 		"crimson_essence": 202,
@@ -164,7 +165,7 @@ module.exports = function GatheringMarkers(mod) {
 			if (!gatheringItemNames.has(parseInt(itemId))) return;
 
 			let color = "#60bb60";
-			if ((itemId >= 101 && itemId <= 106) || itemId === 301 || itemId === 590) color = "#db6060";
+			if ((itemId >= 101 && itemId <= 106) || itemId === 301 || itemId === 814 || itemId === 590) color = "#db6060";
 			if ((itemId >= 201 && itemId <= 206) || itemId === 601 || itemId === 591) color = "#6060db";
 
 			settingsStructure.push({
