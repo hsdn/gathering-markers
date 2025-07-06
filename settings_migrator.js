@@ -12,7 +12,8 @@ const DefaultSettings = {
 	"orange_mushroom": true,
 	"moongourd": true,
 	"apple_tree": true,
-	"dawnbloom_leaf": true,
+	"onyxite_rosemary": true,
+	// "dawnbloom_leaf": true,
 
 	// Mining
 	"plain_stone": true,
@@ -23,7 +24,8 @@ const DefaultSettings = {
 	"galborne_ore": true,
 	"pure_duranium_ore": true,
 	"exodor_ore": true,
-	"dawnsteel_ore": true,
+	"onyxite_ore": true,
+	// "dawnsteel_ore": true,
 
 	// Energy
 	"achromic_essence": true,
@@ -33,7 +35,7 @@ const DefaultSettings = {
 	"opal_essence": true,
 	"obsidian_essence": true,
 	"pure_duranium_crystal": true,
-	"lumin_essence": true
+	// "lumin_essence": true
 };
 
 module.exports = function MigrateSettings(from_ver, to_ver, settings) {

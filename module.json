@@ -4,12 +4,12 @@
         "niceName": "Gathering Markers",
         "settingsFile": "config.json",
         "settingsMigrator": "settings_migrator.js",
-        "settingsVersion": 3
+        "settingsVersion": 4
     },
     "author": "HSDN",
     "description": "Gathering Markers",
     "servers": ["https://raw.githubusercontent.com/hsdn/gathering-markers/master/"],
     "supportUrl": "https://github.com/hsdn/gathering-markers/issues",
-    "version": "110.2",
+    "version": "2025.07.06",
     "disableAutoUpdate": false
 }

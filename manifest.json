@@ -1,9 +1,9 @@
 {
     "files": {
         "README.md": "d21f8c3e4e1261dc36f7eaf7dd283a210545f7395a44b5cab290c2e826ab8a33",
-        "index.js": "c30017ba13c84755830b2fabcae62f41eb00b0bed751a2e3fefaebf7a11bf106",
-        "module.json": "6f615dc905d0e54b1140b14f2092cf71ec2bdab76f73fa2d7afc843d9aeef1aa",
-        "settings_migrator.js": "829d82becf735d351dcd64834df8749ebe952a55f91af5f7bfd6ff604eb5f358"
+        "index.js": "5d7e544e93cb5a22b254861801657018cabd7bfaa9981bea9be65a9ef17c1642",
+        "module.json": "4db84e6864023b488c2d738b32811dc3c6f5a59af60f6821a52e2720d57d4616",
+        "settings_migrator.js": "ba8da909f5f0b9935feb49644fa40bd26d97099c09da921c0f58010a3e46af28"
     },
     "defs": {
         "C_NOTIFY_LOCATION_IN_ACTION": 4,

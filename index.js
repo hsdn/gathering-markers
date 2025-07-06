@@ -14,16 +14,18 @@ module.exports = function GatheringMarkers(mod) {
 		"orange_mushroom": 4,
 		"moongourd": 5,
 		"apple_tree": 6,
-		"dawnbloom_leaf": 592,
+		"onyxite_rosemary": 7,
+		// "dawnbloom_leaf": 592,
 		"plain_stone": 101,
 		"cobala_ore": 102,
 		"shadmetal_ore": 103,
 		"xermetal_ore": 104,
 		"normetal_ore": 105,
 		"galborne_ore": 106,
+		"onyxite_ore": 107,
 		"pure_duranium_ore": 301,
 		"exodor_ore": 814,
-		"dawnsteel_ore": 590,
+		// "dawnsteel_ore": 590,
 		"achromic_essence": 201,
 		"crimson_essence": 202,
 		"earth_essence": 203,
@@ -31,7 +33,7 @@ module.exports = function GatheringMarkers(mod) {
 		"opal_essence": 205,
 		"obsidian_essence": 206,
 		"pure_duranium_crystal": 601,
-		"lumin_essence": 591
+		// "lumin_essence": 591
 	};
 
 	mod.command.add("gat", {
@@ -165,7 +167,7 @@ module.exports = function GatheringMarkers(mod) {
 			if (!gatheringItemNames.has(parseInt(itemId))) return;
 
 			let color = "#60bb60";
-			if ((itemId >= 101 && itemId <= 106) || itemId === 301 || itemId === 814 || itemId === 590) color = "#db6060";
+			if ((itemId >= 101 && itemId <= 107) || itemId === 301 || itemId === 814 || itemId === 590) color = "#db6060";
 			if ((itemId >= 201 && itemId <= 206) || itemId === 601 || itemId === 591) color = "#6060db";
 
 			settingsStructure.push({
